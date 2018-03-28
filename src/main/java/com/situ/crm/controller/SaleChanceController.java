@@ -3,7 +3,8 @@ package com.situ.crm.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -21,48 +22,46 @@ import com.situ.crm.service.ISaleChanceService;
 @RequestMapping("/saleChance")
 public class SaleChanceController {
 	@InitBinder
-	protected void initBinder(WebDataBinder binder){
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+	protected void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(
                 new SimpleDateFormat("yyyy-MM-dd"), true));
-	}
+    }
 	
 	@Autowired
 	private ISaleChanceService saleChanceService;
-	
+
 	@RequestMapping("/index")
-	public String index(){
-		return "saleChance_index";
+	public String index() {
+		return "sale_chance_index";
+	}
+	
+	@RequestMapping("/cusDevPlan")
+	public String cusDevPlan() {
+		return "cus_dev_plan_index";
 	}
 	
 	@RequestMapping("/pageList")
 	@ResponseBody
-	public DataGrideResult pageList(Integer page,Integer rows,SaleChance saleChance){
-		
-		return saleChanceService.pageList(page,rows,saleChance);
-		
+	public DataGrideResult pageList(Integer page, Integer rows, SaleChance saleChance) {
+		return saleChanceService.pageList(page, rows, saleChance);
 	}
-
+	
 	@RequestMapping("/delete")
 	@ResponseBody
-	public ServerResponse delete(String ids){
+	public ServerResponse delete(String ids) {
 		return saleChanceService.delete(ids);
 	}
 	
-	@RequestMapping("/insert")
+	@RequestMapping("/add")
 	@ResponseBody
-	public ServerResponse insert(SaleChance saleChance){
-		return saleChanceService.insert(saleChance);
+	public ServerResponse add(SaleChance saleChance) {
+		return saleChanceService.add(saleChance);
 	}
 	
 	@RequestMapping("/update")
 	@ResponseBody
-	public ServerResponse update(SaleChance saleChance){
+	public ServerResponse update(SaleChance saleChance) {
 		return saleChanceService.update(saleChance);
-	}
-	
-	@RequestMapping("/cusDevPlan")
-	public String cusDevPlan(){
-		return "cus_Dev_Plan";
 	}
 	
 	@RequestMapping("/selectById")
@@ -71,10 +70,14 @@ public class SaleChanceController {
 		return saleChanceService.selectById(id);
 	}
 	
-	@RequestMapping("/updateDevResult")
+	@RequestMapping(value="/updateDevResult")
 	@ResponseBody
-	public ServerResponse updateDevResult(Integer id,Integer devResult) {
-		System.out.println(id + devResult);
-		return saleChanceService.updateDevResult(id,devResult);
+	public ServerResponse updateDevResult(Integer saleChanceId, Integer devResult){
+		return saleChanceService.updateDevResult(saleChanceId, devResult);
+	}
+	
+	@RequestMapping("/exportExcel")
+	public void exportExcel(HttpServletResponse response) {
+		saleChanceService.exportExcel(response);
 	}
 }

@@ -92,4 +92,36 @@
       exe_affect = #{exeAffect,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="pageList" parameterType="cusDevPlan" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from cus_dev_plan
+    <!-- <where>
+    	<if test="name != null and name != '' ">
+    		and name like concat("%", #{name}, "%")
+    	</if>
+    	<if test="email != null and email != '' ">
+    		and email like concat("%", #{email}, "%")
+    	</if>
+    	<if test="roleName != null and roleName != '' ">
+    		and role_name like concat("%", #{roleName}, "%")
+    	</if>
+    </where> -->
+  </select>
+  
+  <delete id="deleteAll">
+  	delete from cus_dev_plan
+  	where id in
+  	<foreach collection="array" item="id" open="(" close=")" separator=",">
+  		#{id}
+  	</foreach>
+  </delete>
+  
+  <select id="selectAll" parameterType="int" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from cus_dev_plan
+  	where sale_chance_id=#{saleChanceId}
+  </select>
 </mapper>

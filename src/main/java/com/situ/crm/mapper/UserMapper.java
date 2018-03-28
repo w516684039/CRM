@@ -20,4 +20,6 @@ public interface UserMapper {
     List<User> pageList(User user);
 
 	int deleteAll(String[] idsArray);
+
+	List<User> selectCustomerManagerList();
 }

@@ -1,5 +1,7 @@
 package com.situ.crm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,5 +46,11 @@ public class UserController {
 	@ResponseBody
 	public ServerResponse update(User user){
 		return userService.update(user);
+	}
+	
+	@RequestMapping("/selectCustomerManagerList")
+	@ResponseBody
+	public List<User> selectCustomerManagerList() {
+		return userService.selectCustomerManagerList();
 	}
 }

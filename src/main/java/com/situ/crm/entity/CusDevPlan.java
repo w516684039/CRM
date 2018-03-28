@@ -3,6 +3,8 @@ package com.situ.crm.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class CusDevPlan implements Serializable {
     private Integer id;
 
@@ -10,6 +12,7 @@ public class CusDevPlan implements Serializable {
 
     private String planItem;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd" ,timezone="GMT+8")
     private Date planDate;
 
     private String exeAffect;

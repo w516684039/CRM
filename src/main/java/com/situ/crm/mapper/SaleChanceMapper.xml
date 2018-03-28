@@ -229,4 +229,10 @@
   	set dev_result=#{devResult}
   	where id=#{id}
   </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+     select 
+     <include refid="Base_Column_List" />
+     from sale_chance
+   </select>
 </mapper>

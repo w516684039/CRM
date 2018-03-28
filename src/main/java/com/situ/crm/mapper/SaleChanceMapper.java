@@ -25,4 +25,6 @@ public interface SaleChanceMapper {
    	int deleteAll(String[] idsArray);
 
    	int updateDevResult(@Param(value="id")Integer id, @Param(value="devResult")Integer devResult);
+
+   	List<SaleChance> selectAll();
 }

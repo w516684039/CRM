@@ -1,5 +1,7 @@
 package com.situ.crm.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import com.situ.crm.common.DataGrideResult;
 import com.situ.crm.common.ServerResponse;
 import com.situ.crm.entity.SaleChance;
@@ -10,11 +12,13 @@ public interface ISaleChanceService {
 
 	ServerResponse delete(String ids);
 
-	ServerResponse insert(SaleChance saleChance);
+	ServerResponse add(SaleChance saleChance);
 
 	ServerResponse update(SaleChance saleChance);
 
-	ServerResponse<SaleChance> selectById(Integer id);
+	ServerResponse<SaleChance> selectById(Integer saleChanceId);
 
-	ServerResponse<SaleChance> updateDevResult(Integer id, Integer devResult);
+	ServerResponse updateDevResult(Integer id, Integer devResult);
+
+	void exportExcel(HttpServletResponse response);
 }

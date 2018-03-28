@@ -62,17 +62,10 @@
 
 	<body class="easyui-layout" >
        <!-- 北边-->
-       <div data-options="region:'north'" style="height: 100px;">
-        	<table cellpadding=0 cellspacing=0 border=0 height=100% width=100%>  
-              <tr height=50px>  
-                <td width=50%><img src="${ctx}/static/common/img/qd.png" /></td>  
-                <td width=50% align="right">  欢迎您：　 |  修改密码  |  退出系统  | 主页    </td>  
-              </tr>  
-          </table>
-       </div>
-       <%-- <div data-options="region:'north'" style="height: 106px;">
+       
+        <div data-options="region:'north'" style="height: 106px;">
        		<a><img src="${ctx}/static/common/img/qd.png"></a>
-       </div> --%>
+       </div> 
        <!-- 西边-->
        <div data-options="region:'west',title:'导航菜单' " style="width: 200px;">
 	       <!--手风琴-->

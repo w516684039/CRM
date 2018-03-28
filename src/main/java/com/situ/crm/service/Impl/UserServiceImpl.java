@@ -64,4 +64,9 @@ public class UserServiceImpl implements IUserService {
 		return ServerResponse.createERROR("更新失败");
 	}
 
+	@Override
+	public List<User> selectCustomerManagerList() {
+		return usermapper.selectCustomerManagerList();
+	}
+
 }
