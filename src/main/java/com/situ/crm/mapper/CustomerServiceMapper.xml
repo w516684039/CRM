@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.situ.crm.mapper.CustomerServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.situ.crm.entity.CustomerService" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="service_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="overview" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="customer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="status" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="service_request" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_people" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="assigner" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="assign_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="service_deal" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="service_deal_people" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="service_deal_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="service_deal_result" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="satisfy" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, service_type, overview, customer, status, service_request, create_people, create_time, 
+    assigner, assign_time, service_deal, service_deal_people, service_deal_time, service_deal_result, 
+    satisfy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.situ.crm.entity.CustomerService" >
+    insert into customer_service (id, service_type, overview, 
+      customer, status, service_request, 
+      create_people, create_time, assigner, 
+      assign_time, service_deal, service_deal_people, 
+      service_deal_time, service_deal_result, satisfy
+      )
+    values (#{id,jdbcType=INTEGER}, #{serviceType,jdbcType=VARCHAR}, #{overview,jdbcType=VARCHAR}, 
+      #{customer,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{serviceRequest,jdbcType=VARCHAR}, 
+      #{createPeople,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{assigner,jdbcType=VARCHAR}, 
+      #{assignTime,jdbcType=TIMESTAMP}, #{serviceDeal,jdbcType=VARCHAR}, #{serviceDealPeople,jdbcType=VARCHAR}, 
+      #{serviceDealTime,jdbcType=TIMESTAMP}, #{serviceDealResult,jdbcType=VARCHAR}, #{satisfy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.situ.crm.entity.CustomerService" >
+    insert into customer_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serviceType != null" >
+        service_type,
+      </if>
+      <if test="overview != null" >
+        overview,
+      </if>
+      <if test="customer != null" >
+        customer,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="serviceRequest != null" >
+        service_request,
+      </if>
+      <if test="createPeople != null" >
+        create_people,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="assigner != null" >
+        assigner,
+      </if>
+      <if test="assignTime != null" >
+        assign_time,
+      </if>
+      <if test="serviceDeal != null" >
+        service_deal,
+      </if>
+      <if test="serviceDealPeople != null" >
+        service_deal_people,
+      </if>
+      <if test="serviceDealTime != null" >
+        service_deal_time,
+      </if>
+      <if test="serviceDealResult != null" >
+        service_deal_result,
+      </if>
+      <if test="satisfy != null" >
+        satisfy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serviceType != null" >
+        #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="overview != null" >
+        #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceRequest != null" >
+        #{serviceRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null" >
+        #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assigner != null" >
+        #{assigner,jdbcType=VARCHAR},
+      </if>
+      <if test="assignTime != null" >
+        #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceDeal != null" >
+        #{serviceDeal,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDealPeople != null" >
+        #{serviceDealPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDealTime != null" >
+        #{serviceDealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceDealResult != null" >
+        #{serviceDealResult,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfy != null" >
+        #{satisfy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.situ.crm.entity.CustomerService" >
+    update customer_service
+    <set >
+      <if test="serviceType != null" >
+        service_type = #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="overview != null" >
+        overview = #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        customer = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceRequest != null" >
+        service_request = #{serviceRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="createPeople != null" >
+        create_people = #{createPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assigner != null" >
+        assigner = #{assigner,jdbcType=VARCHAR},
+      </if>
+      <if test="assignTime != null" >
+        assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceDeal != null" >
+        service_deal = #{serviceDeal,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDealPeople != null" >
+        service_deal_people = #{serviceDealPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceDealTime != null" >
+        service_deal_time = #{serviceDealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceDealResult != null" >
+        service_deal_result = #{serviceDealResult,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfy != null" >
+        satisfy = #{satisfy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.situ.crm.entity.CustomerService" >
+    update customer_service
+    set service_type = #{serviceType,jdbcType=VARCHAR},
+      overview = #{overview,jdbcType=VARCHAR},
+      customer = #{customer,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      service_request = #{serviceRequest,jdbcType=VARCHAR},
+      create_people = #{createPeople,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      assigner = #{assigner,jdbcType=VARCHAR},
+      assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      service_deal = #{serviceDeal,jdbcType=VARCHAR},
+      service_deal_people = #{serviceDealPeople,jdbcType=VARCHAR},
+      service_deal_time = #{serviceDealTime,jdbcType=TIMESTAMP},
+      service_deal_result = #{serviceDealResult,jdbcType=VARCHAR},
+      satisfy = #{satisfy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

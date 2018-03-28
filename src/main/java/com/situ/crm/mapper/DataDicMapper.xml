@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.situ.crm.mapper.DataDicMapper" >
+  <resultMap id="BaseResultMap" type="com.situ.crm.entity.DataDic" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="data_dic_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="data_dic_value" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMap" type="com.situ.crm.entity.DataDic" >
+     <id column="id" property="id" />
+     <result column="data_dic_name" property="dataDicName"/>
+     <result column="data_dic_value" property="dataDicValue"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, data_dic_name, data_dic_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from data_dic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from data_dic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.situ.crm.entity.DataDic" >
+    insert into data_dic (id, data_dic_name, data_dic_value
+      )
+    values (#{id,jdbcType=INTEGER}, #{dataDicName,jdbcType=VARCHAR}, #{dataDicValue,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.situ.crm.entity.DataDic" >
+    insert into data_dic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dataDicName != null" >
+        data_dic_name,
+      </if>
+      <if test="dataDicValue != null" >
+        data_dic_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dataDicName != null" >
+        #{dataDicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDicValue != null" >
+        #{dataDicValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.situ.crm.entity.DataDic" >
+    update data_dic
+    <set >
+      <if test="dataDicName != null" >
+        data_dic_name = #{dataDicName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDicValue != null" >
+        data_dic_value = #{dataDicValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.situ.crm.entity.DataDic" >
+    update data_dic
+    set data_dic_name = #{dataDicName,jdbcType=VARCHAR},
+      data_dic_value = #{dataDicValue,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="pageList" parameterType="com.situ.crm.entity.DataDic" resultMap="BaseResultMap">
+  	 select
+    <include refid="Base_Column_List" />
+    from data_dic
+    <where>
+    	<if test="dataDicName != null and dataDicName != '' ">
+    		and data_dic_name like concat("%",#{dataDicName},"%")
+    	</if>
+    	<if test="dataDicValue != null and dataDicValue != '' ">
+    		and data_dic_value like concat("%",#{dataDicValue},"%")
+    	</if>
+    </where>
+  </select>
+  <delete id="deleteAll">
+  		delete from data_dic
+  		where id in
+  		<foreach collection="array" item="id" open="(" close=")" separator=","> 
+   		#{id} 
+  		</foreach> 
+  </delete>
+  <select id="selectDataDicName" resultMap="ResultMap">
+  	select distinct data_dic_name
+  	from data_dic
+  </select>
+</mapper>

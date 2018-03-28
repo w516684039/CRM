@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.situ.crm.mapper.SaleChanceMapper" >
+  <resultMap id="BaseResultMap" type="com.situ.crm.entity.SaleChance" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="chance_source" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="customer_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="success_rate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="overview" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="link_man" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="link_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_man" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="assign_man" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="assign_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="dev_result" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, chance_source, customer_name, success_rate, overview, link_man, link_phone, description, 
+    create_man, create_time, assign_man, assign_time, status, dev_result
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sale_chance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sale_chance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.situ.crm.entity.SaleChance" >
+    insert into sale_chance (id, chance_source, customer_name, 
+      success_rate, overview, link_man, 
+      link_phone, description, create_man, 
+      create_time, assign_man, assign_time, 
+      status, dev_result)
+    values (#{id,jdbcType=INTEGER}, #{chanceSource,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{successRate,jdbcType=INTEGER}, #{overview,jdbcType=VARCHAR}, #{linkMan,jdbcType=VARCHAR}, 
+      #{linkPhone,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createMan,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{assignMan,jdbcType=VARCHAR}, #{assignTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{devResult,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.situ.crm.entity.SaleChance" >
+    insert into sale_chance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="chanceSource != null" >
+        chance_source,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="successRate != null" >
+        success_rate,
+      </if>
+      <if test="overview != null" >
+        overview,
+      </if>
+      <if test="linkMan != null" >
+        link_man,
+      </if>
+      <if test="linkPhone != null" >
+        link_phone,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="createMan != null" >
+        create_man,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="assignMan != null" >
+        assign_man,
+      </if>
+      <if test="assignTime != null" >
+        assign_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="devResult != null" >
+        dev_result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="chanceSource != null" >
+        #{chanceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="successRate != null" >
+        #{successRate,jdbcType=INTEGER},
+      </if>
+      <if test="overview != null" >
+        #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createMan != null" >
+        #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignMan != null" >
+        #{assignMan,jdbcType=VARCHAR},
+      </if>
+      <if test="assignTime != null" >
+        #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="devResult != null" >
+        #{devResult,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.situ.crm.entity.SaleChance" >
+    update sale_chance
+    <set >
+      <if test="chanceSource != null" >
+        chance_source = #{chanceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="successRate != null" >
+        success_rate = #{successRate,jdbcType=INTEGER},
+      </if>
+      <if test="overview != null" >
+        overview = #{overview,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMan != null" >
+        link_man = #{linkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhone != null" >
+        link_phone = #{linkPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createMan != null" >
+        create_man = #{createMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assignMan != null" >
+        assign_man = #{assignMan,jdbcType=VARCHAR},
+      </if>
+      <if test="assignTime != null" >
+        assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="devResult != null" >
+        dev_result = #{devResult,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.situ.crm.entity.SaleChance" >
+    update sale_chance
+    set chance_source = #{chanceSource,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      success_rate = #{successRate,jdbcType=INTEGER},
+      overview = #{overview,jdbcType=VARCHAR},
+      link_man = #{linkMan,jdbcType=VARCHAR},
+      link_phone = #{linkPhone,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_man = #{createMan,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      assign_man = #{assignMan,jdbcType=VARCHAR},
+      assign_time = #{assignTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      dev_result = #{devResult,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="pageList" parameterType="saleChance" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from sale_chance
+    <where>
+    	<if test="chanceSource != null and chanceSource != '' ">
+    		and chance_source like concat("%", #{chanceSource}, "%")
+    	</if>
+    	<if test="customerName != null and customerName != '' ">
+    		and customer_name like concat("%", #{customerName}, "%")
+    	</if>
+    	<if test="status != null">
+    		and status = #{status}
+    	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteAll">
+  	delete from sale_chance
+  	where id in
+  	<foreach collection="array" item="id" open="(" close=")" separator=",">
+  		#{id}
+  	</foreach>
+  </delete>
+  
+  <update id="updateDevResult">
+  	update sale_chance
+  	set dev_result=#{devResult}
+  	where id=#{id}
+  </update>
+</mapper>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.situ.crm.mapper.CustomerLossMapper" >
+  <resultMap id="BaseResultMap" type="com.situ.crm.entity.CustomerLoss" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="customer_no" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="customer_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="customer_manager" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="last_order_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="confirm_loss_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loss_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, customer_no, customer_name, customer_manager, last_order_time, confirm_loss_time, 
+    status, loss_reason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_loss
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_loss
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.situ.crm.entity.CustomerLoss" >
+    insert into customer_loss (id, customer_no, customer_name, 
+      customer_manager, last_order_time, confirm_loss_time, 
+      status, loss_reason)
+    values (#{id,jdbcType=INTEGER}, #{customerNo,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{customerManager,jdbcType=VARCHAR}, #{lastOrderTime,jdbcType=DATE}, #{confirmLossTime,jdbcType=DATE}, 
+      #{status,jdbcType=INTEGER}, #{lossReason,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.situ.crm.entity.CustomerLoss" >
+    insert into customer_loss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customerNo != null" >
+        customer_no,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="customerManager != null" >
+        customer_manager,
+      </if>
+      <if test="lastOrderTime != null" >
+        last_order_time,
+      </if>
+      <if test="confirmLossTime != null" >
+        confirm_loss_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="lossReason != null" >
+        loss_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customerNo != null" >
+        #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerManager != null" >
+        #{customerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOrderTime != null" >
+        #{lastOrderTime,jdbcType=DATE},
+      </if>
+      <if test="confirmLossTime != null" >
+        #{confirmLossTime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lossReason != null" >
+        #{lossReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.situ.crm.entity.CustomerLoss" >
+    update customer_loss
+    <set >
+      <if test="customerNo != null" >
+        customer_no = #{customerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerManager != null" >
+        customer_manager = #{customerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="lastOrderTime != null" >
+        last_order_time = #{lastOrderTime,jdbcType=DATE},
+      </if>
+      <if test="confirmLossTime != null" >
+        confirm_loss_time = #{confirmLossTime,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lossReason != null" >
+        loss_reason = #{lossReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.situ.crm.entity.CustomerLoss" >
+    update customer_loss
+    set customer_no = #{customerNo,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_manager = #{customerManager,jdbcType=VARCHAR},
+      last_order_time = #{lastOrderTime,jdbcType=DATE},
+      confirm_loss_time = #{confirmLossTime,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      loss_reason = #{lossReason,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
